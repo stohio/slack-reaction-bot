@@ -1,3 +1,4 @@
+#!env/bin/python
 import os
 import time
 from slackclient import SlackClient
@@ -10,8 +11,12 @@ BOT_ID = 'U3YLPLY5C'
 AT_BOT = "<@" + BOT_ID + ">"
 EXAMPLE_COMMAND = "do"
 
-# instantiate Slack & Twilio clients
-slack_client = SlackClient('REDACTED')
+# read in the authentication token for bot 
+f = open('permissions.txt')
+key = f.readline().rstrip()
+f.close()
+
+slack_client = SlackClient(key)
 
 
 def handle_command(command, channel):
