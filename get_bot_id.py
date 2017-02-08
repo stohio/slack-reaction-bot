@@ -1,10 +1,16 @@
 import os
 from slackclient import SlackClient
 
+# TODO wrap this into an initialization class
+
+# get api key
+f = open('permissions.txt')
+key = f.readline().rstrip()
+f.close()
 
 BOT_NAME = 'reactionadder'
 
-slack_client = SlackClient('xoxb-134703712182-yLzkgC3gbktT902RSqcaOY9C')
+slack_client = SlackClient(key)
 
 
 if __name__ == "__main__":

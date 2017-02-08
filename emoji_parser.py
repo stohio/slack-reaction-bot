@@ -2,9 +2,12 @@ import json
 
 class Emoji:
     # initialize the class instance
-    # grabs the custom emoji list for server
     def __init__(self, slack_client):
+        # grabs the custom emoji list for server
         self.custom_emoji_list = slack_client.api_call("emoji.list")["emoji"] 
+        # load emojis file
+        with open('emoji.json') as data_file:
+            self.data = json.load(data_file)
 
     def search_list(self, query_list):
         result_set = list()
@@ -19,9 +22,7 @@ class Emoji:
         return formatted_message
 
     def find_query(self, query):
-        with open('emoji.json') as data_file:
-            data = json.load(data_file)
-        for sub_list in data:
+        for sub_list in self.data:
             if query == sub_list["short_name"]:
                 return query
 
