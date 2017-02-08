@@ -6,5 +6,6 @@ Slack bot which adds reactions to messages
 ```
 https://docs.python.org/3/library/doctest.html#module-doctest
 ```
+- Figure out how to map one synonym to multiple root emojis
 
 pip -r requirements.txt
