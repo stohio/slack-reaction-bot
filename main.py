@@ -19,25 +19,23 @@ f.close()
 slack_client = SlackClient(key)
 
 
-def handle_command(command, channel):
-    """
-        Receives commands directed at the bot and determines if they
-        are valid commands. If so, then acts on the commands. If not,
-        returns back what it needs for clarification.
-    """
-    print command 
+class MessageParser:
+
+
 
 
 def parse_slack_output(slack_rtm_output):
     """
-        The Slack Real Time Messaging API is an events firehose.
-        this parsing function returns None unless a message is
-        directed at the Bot, based on its ID.
+        Takes the raw slack output an determines if it is a Command or Message type
     """
     output_list = slack_rtm_output
     if output_list and len(output_list) > 0:
         # print output_list
         for output in output_list:
+            if output and 'text' in output and AT_BOT in output['text']:
+                return output['text'].split(AT_BOT)[1].strip().lower(), \
+                output['channel']
+
             if output and 'text' in output:
                 # return text after the @ mention, whitespace removed
                 return output['text'], \
