@@ -1,6 +1,6 @@
 import json
 
-class Emoji:
+class EmojiParser:
     # initialize the class instance
     def __init__(self, slack_client):
         # grabs the custom emoji list for server
@@ -26,3 +26,16 @@ class Emoji:
             if query == sub_list["short_name"]:
                 return query
 
+    # temporary function 
+    def get_fields(output):
+        return output['text'], \
+               output['channel'], \
+               output['ts'], \
+               output['user']
+    BOT_ID = 'U3YLPLY5C'
+    def parse_message(slack_message):
+        text, channel, timestamp, user = get_fields(slack_message)
+        text = self.format_text(text)
+        if text and channel and timestamp and user != BOT_ID:
+            emoji_list = self.search_list(text.split())
+            return self.format_text(text), channel, timestamp, user
