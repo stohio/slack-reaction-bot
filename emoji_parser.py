@@ -27,15 +27,16 @@ class EmojiParser:
                 return query
 
     # temporary function 
-    def get_fields(output):
-        return output['text'], \
-               output['channel'], \
-               output['ts'], \
-               output['user']
+    def get_fields(self, output_list):
+        for output in output_list:
+            return output['text'], \
+                   output['channel'], \
+                   output['ts'], \
+                   output['user']
     BOT_ID = 'U3YLPLY5C'
-    def parse_message(slack_message):
-        text, channel, timestamp, user = get_fields(slack_message)
+    def parse_message(self, slack_message):
+        text, channel, timestamp, user = self.get_fields(slack_message)
         text = self.format_text(text)
-        if text and channel and timestamp and user != BOT_ID:
+        if text and channel and timestamp and user != self.BOT_ID:
             emoji_list = self.search_list(text.split())
             return self.format_text(text), channel, timestamp, user
