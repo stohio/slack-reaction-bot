@@ -7,4 +7,5 @@ Slack bot which adds reactions to messages
 https://docs.python.org/3/library/doctest.html#module-doctest
 ```
 
+#Set Up
 pip -r requirements.txt
