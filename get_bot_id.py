@@ -1,4 +1,3 @@
-import os
 from slackclient import SlackClient
 
 # TODO wrap this into an initialization class
@@ -23,4 +22,3 @@ if __name__ == "__main__":
                 print("Bot ID for '" + user['name'] + "' is " + user.get('id'))
     else:
         print("could not find bot user with the name " + BOT_NAME)
-
